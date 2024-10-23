@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Product list with cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script type="module" src="js/index.js"></script>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid container">
+      <!-- html markup for the products section -->
+      <section class="product">
+        <h1 class="product__heading">Desserts</h1>
+        <!-- <span class="loader"></span> -->
+        <div class="product__items">
+          <!-- <figure class="product__item">
+            <img
+              class="product__img"
+              src="assets/images/image-waffle-desktop.jpg"
+              alt="waffle with berries"
+            />
+
+            <div class="product__cta">
+              <button class="product__btn product__btn--cart">
+                <img
+                  src="assets/images/icon-add-to-cart.svg"
+                  alt="add to cart"
+                />
+                <span>Add to cart</span>
+              </button>
+
+              <div class="product__qty">
+                <button class="product__qty-btn product__qty--decrement">
+                  <img
+                    src="assets/images/icon-decrement-quantity.svg"
+                    alt="-"
+                  />
+                </button>
+                <span class="product__qty-value">0</span>
+                <button class="product__qty-btn product__qty--increment">
+                  <img
+                    src="assets/images/icon-increment-quantity.svg"
+                    alt="+"
+                  />
+                </button>
+              </div>
+            </div>
+            <div class="product__details">
+              <h2 class="product__name">Waffle</h2>
+              <h3 class="product__desc">Waffle with Berries</h3>
+              <p class="product__price">$6.50</p>
+            </div>
+          </figure> -->
+        </div>
+      </section>
+
+      <!-- html markup for the cart section -->
+      <section class="cart">
+        <div class="cart__menu">
+          <h1 class="cart__total">
+            Your Cart (<span class="cart__total-qty">0</span>)
+          </h1>
+          <figure class="cart__empty">
+            <img
+              class="cart__empty-img"
+              src="assets/images/illustration-empty-cart.svg"
+              alt="empty cart"
+            />
+          </figure>
+          <div class="cart__details">
+            <!-- <div class="cart__items">
+              <div class="cart__item">
+                <h3 class="cart__item-name">Classic Tiramisu</h3>
+                <span class="cart__item-qty">1x</span>
+                <span class="cart__item-price">@ $50</span>
+                <span class="cart__item-total">$10</span>
+              </div>
+
+              <button class="cart__item-remove">
+                <img src="assets/images/icon-remove-item.svg" alt="" />
+              </button>
+            </div> -->
+          </div>
+
+          <div class="cart__cta">
+            <div class="cart__order">
+              <p class="cart__order-text">Order Total</p>
+              <h3 class="cart__order-total">$47.25</h3>
+            </div>
+            <div class="cart__eco">
+              <img
+                class="cart__eco-img"
+                src="assets/images/icon-carbon-neutral.svg"
+                alt="carbon neutral"
+              />
+              <p class="cart__eco-text">
+                This is a <b>carbon-neutral</b> delivery
+              </p>
+            </div>
+
+            <button class="cart__order-btn">Confirm Order</button>
+          </div>
+          <p class="cart__description">Your added items will appear here.</p>
+        </div>
+      </section>
+    </div>
+    <!-- 
+  Desserts
+
+  Waffle with Berries
+  Waffle
+  6.50
+  Add to Cart
+
+  Vanilla Bean Crème Brûlée
+  Crème Brûlée
+  7.00
+  Add to Cart
+
+  Macaron Mix of Five
+  Macaron
+  8.00
+  Add to Cart
+
+  Classic Tiramisu
+  Tiramisu
+  5.50
+  Add to Cart
+
+  Pistachio Baklava
+  Baklava
+  4.00
+  Add to Cart
+
+  Lemon Meringue Pie
+  Pie
+  5.00
+  Add to Cart
+
+  Red Velvet Cake
+  Cake
+  4.50
+  Add to Cart
+
+  Salted Caramel Brownie
+  Brownie
+  4.50
+  Add to Cart
+
+  Vanilla Panna Cotta
+  Panna Cotta
+  6.50
+  Add to Cart
+
+  Your Cart (Quantity)
+  Your added items will appear here -->
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </body>
+</html>
