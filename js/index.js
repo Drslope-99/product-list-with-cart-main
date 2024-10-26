@@ -1,11 +1,15 @@
 // selecting the various dom elements for manipulation
 const productContainer = document.querySelector(".product__items");
-const cartDetials = document.querySelector(".cart__details");
+const cartDetails = document.querySelector(".cart__details");
 const cartCta = document.querySelector(".cart__cta");
 const cartEmpty = document.querySelector(".cart__empty");
 const cartDescription = document.querySelector(".cart__description");
 const cartTotalQuantity = document.querySelector(".cart__total-qty");
 const cartOrderTotal = document.querySelector(".cart__order-total");
+const confirmOrderBtn = document.querySelector(".cart__order-btn");
+const orderModal = document.querySelector(".order__overlay");
+const orderItems = document.querySelector(".order__items");
+const startNewOrderBtn = document.querySelector(".order__btn");
 
 const items = {
   products: [],
@@ -83,7 +87,7 @@ const renderProducts = (product) => {
 };
 
 const renderCart = (cart = []) => {
-  clearContent(cartDetials);
+  clearContent(cartDetails);
   let orderTotal;
   let cartTotal;
   let cartItems;
@@ -119,7 +123,7 @@ const renderCart = (cart = []) => {
                   ).toFixed(2)}</span>
                 </div>
 
-                <button class="cart__item-remove">
+                <button class="cart__item-remove" id=${createdId(cartItem)}>
                 <img src="assets/images/icon-remove-item.svg" alt="" />
                 </button>
               </div>`;
@@ -129,7 +133,7 @@ const renderCart = (cart = []) => {
 
   cartTotalQuantity.textContent = cartTotal;
   cartOrderTotal.textContent = orderTotal.toFixed(2);
-  cartDetials.innerHTML = cartItems;
+  cartDetails.innerHTML = cartItems;
 };
 
 const fetchData = async (url) => {
@@ -223,3 +227,64 @@ productContainer.addEventListener("click", (e) => {
   const id = decrementBtn.closest(".product__item").id;
   removeProductById(id, items);
 });
+
+cartDetails.addEventListener("click", (e) => removeFromCart(e, items));
+
+function removeFromCart(e, items) {
+  const removeBtn = e.target.closest(".cart__item-remove");
+
+  if (!removeBtn) return;
+
+  const prodId = removeBtn.id;
+
+  const { products, cart } = items;
+
+  const cartIndex = cart.findIndex(
+    (cartItem) => createdId(cartItem) === prodId
+  );
+
+  cart.splice(cartIndex, 1);
+  renderCart(cart);
+  renderProducts(items);
+}
+
+function confirmOrder(orders) {
+  const { products, cart } = orders;
+  orderModal.classList.add("active");
+  clearContent(orderItems);
+  const cartOrder = cart
+    .map((cartItem) => {
+      return `<article class="order__item">
+              <figure class="order__thumbnail">
+                <img
+                  src=${cartItem.image.thumbnail}
+                  alt=${cartItem.name}
+                />
+              </figure>
+              <div class="order__item-details">
+                <h3 class="order__item-name">${cartItem.name}</h3>
+                <span class="order__item-qty">${cartItem.quantity}x</span>
+                <span class="order__item-price">@ $${cartItem.price.toFixed(
+                  2
+                )}</span>
+              </div>
+              <p class="order__item-total">$${(
+                cartItem.price * cartItem.quantity
+              ).toFixed(2)}</p>
+            </article>`;
+    })
+    .join("");
+  orderItems.innerHTML = cartOrder;
+}
+
+confirmOrderBtn.addEventListener("click", (e) => confirmOrder(items));
+
+function startNewOrder(prod) {
+  const { products, cart } = prod;
+  cart.length = 0;
+  renderCart(cart);
+  renderProducts(prod);
+  orderModal.classList.remove("active");
+}
+
+startNewOrderBtn.addEventListener("click", (e) => startNewOrder(items));
